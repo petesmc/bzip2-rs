@@ -36,7 +36,7 @@ fn main() {
         .file("bzip2-1.0.8/decompress.c")
         .file("bzip2-1.0.8/bzlib.c")
         .out_dir(dst.join("lib"))
-        .compile("libbz2.a");
+        .compile("bz2");
 
     let src = env::current_dir().unwrap().join("bzip2-1.0.8");
     let include = dst.join("include");
@@ -44,4 +44,7 @@ fn main() {
     fs::copy(src.join("bzlib.h"), dst.join("include/bzlib.h")).unwrap();
     println!("cargo:root={}", dst.display());
     println!("cargo:include={}", dst.join("include").display());
+
+    println!("cargo:rustc-link-search=native={}", dst.display());
+    println!("cargo:rustc-link-lib=static=cfitsio");
 }
