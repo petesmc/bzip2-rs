@@ -46,5 +46,5 @@ fn main() {
     println!("cargo:include={}", dst.join("include").display());
 
     println!("cargo:rustc-link-search=native={}", dst.display());
-    println!("cargo:rustc-link-lib=static=cfitsio");
+    println!("cargo:rustc-link-lib=static=bz2");
 }
